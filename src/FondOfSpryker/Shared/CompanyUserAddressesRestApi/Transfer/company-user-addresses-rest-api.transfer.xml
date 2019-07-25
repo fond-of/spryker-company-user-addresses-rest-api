@@ -16,6 +16,6 @@
         <property name="fax" type="string"/>
         <property name="comment" type="string"/>
         <property name="gln" type="string"/>
-        <property name="isDefaultBillingAddress" type="bool" />
+        <property name="isDefaultBilling" type="bool" />
     </transfer>
 </transfers>
