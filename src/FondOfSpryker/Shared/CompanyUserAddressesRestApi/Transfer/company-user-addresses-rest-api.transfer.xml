@@ -17,5 +17,6 @@
         <property name="comment" type="string"/>
         <property name="gln" type="string"/>
         <property name="isDefaultBilling" type="bool" />
+        <property name="isDefaultShipping" type="bool" />
     </transfer>
 </transfers>
