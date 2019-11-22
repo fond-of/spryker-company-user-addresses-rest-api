@@ -2,13 +2,13 @@
 
 namespace FondOfSpryker\Glue\CompanyUserAddressesRestApi;
 
-use FondOfSpryker\Glue\CompanyUserAddressesRestApi\Dependency\Client\CompanyUserAddressesRestApiToCompanyUsersRestApiClientBridge;
+use FondOfSpryker\Glue\CompanyUserAddressesRestApi\Dependency\Client\CompanyUserAddressesRestApiToCompanyUserReferenceClientBridge;
 use Spryker\Glue\Kernel\AbstractBundleDependencyProvider;
 use Spryker\Glue\Kernel\Container;
 
 class CompanyUserAddressesRestApiDependencyProvider extends AbstractBundleDependencyProvider
 {
-    public const CLIENT_COMPANY_USERS_REST_API = 'CLIENT_COMPANY_USERS_REST_API';
+    public const CLIENT_COMPANY_USER_REFERENCE = 'CLIENT_COMPANY_USER_REFERENCE';
 
     /**
      * @param \Spryker\Glue\Kernel\Container $container
@@ -19,7 +19,7 @@ class CompanyUserAddressesRestApiDependencyProvider extends AbstractBundleDepend
     {
         $container = parent::provideDependencies($container);
 
-        $container = $this->addCompanyUsersRestApiClient($container);
+        $container = $this->addCompanyUserReferenceClient($container);
 
         return $container;
     }
@@ -29,11 +29,11 @@ class CompanyUserAddressesRestApiDependencyProvider extends AbstractBundleDepend
      *
      * @return \Spryker\Glue\Kernel\Container
      */
-    protected function addCompanyUsersRestApiClient(Container $container): Container
+    protected function addCompanyUserReferenceClient(Container $container): Container
     {
-        $container[static::CLIENT_COMPANY_USERS_REST_API] = function (Container $container) {
-            return new CompanyUserAddressesRestApiToCompanyUsersRestApiClientBridge(
-                $container->getLocator()->companyUsersRestApi()->client()
+        $container[static::CLIENT_COMPANY_USER_REFERENCE] = function (Container $container) {
+            return new CompanyUserAddressesRestApiToCompanyUserReferenceClientBridge(
+                $container->getLocator()->companyUserReference()->client()
             );
         };
 

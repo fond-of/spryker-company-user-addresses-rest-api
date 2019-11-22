@@ -3,7 +3,7 @@
 namespace FondOfSpryker\Glue\CompanyUserAddressesRestApi\Processor\CompanyUserAddresses;
 
 use FondOfSpryker\Glue\CompanyUserAddressesRestApi\CompanyUserAddressesRestApiConfig;
-use FondOfSpryker\Glue\CompanyUserAddressesRestApi\Dependency\Client\CompanyUserAddressesRestApiToCompanyUsersRestApiClientInterface;
+use FondOfSpryker\Glue\CompanyUserAddressesRestApi\Dependency\Client\CompanyUserAddressesRestApiToCompanyUserReferenceClientInterface;
 use FondOfSpryker\Glue\CompanyUserAddressesRestApi\Processor\Mapper\CompanyUserAddressesMapperInterface;
 use FondOfSpryker\Glue\CompanyUserAddressesRestApi\Processor\Validation\RestApiErrorInterface;
 use FondOfSpryker\Glue\CompanyUserAddressesRestApi\Processor\Validation\RestApiValidatorInterface;
@@ -30,9 +30,9 @@ class CompanyUserAddressesReader implements CompanyUserAddressesReaderInterface
     protected $restApiError;
 
     /**
-     * @var \FondOfSpryker\Glue\CompanyUserAddressesRestApi\Dependency\Client\CompanyUserAddressesRestApiToCompanyUsersRestApiClientInterface
+     * @var \FondOfSpryker\Glue\CompanyUserAddressesRestApi\Dependency\Client\CompanyUserAddressesRestApiToCompanyUserReferenceClientInterface
      */
-    protected $companyUsersRestApiClient;
+    protected $companyUserReferenceClient;
 
     /**
      * @var \FondOfSpryker\Glue\CompanyUserAddressesRestApi\Processor\Validation\RestApiValidatorInterface
@@ -49,18 +49,18 @@ class CompanyUserAddressesReader implements CompanyUserAddressesReaderInterface
      * @param \FondOfSpryker\Glue\CompanyUserAddressesRestApi\Processor\Validation\RestApiErrorInterface $restApiError
      * @param \FondOfSpryker\Glue\CompanyUserAddressesRestApi\Processor\Validation\RestApiValidatorInterface $restApiValidator
      * @param \FondOfSpryker\Glue\CompanyUserAddressesRestApi\Processor\Mapper\CompanyUserAddressesMapperInterface $companyUserAddressesMapper
-     * @param \FondOfSpryker\Glue\CompanyUserAddressesRestApi\Dependency\Client\CompanyUserAddressesRestApiToCompanyUsersRestApiClientInterface $companyUsersRestApiClient
+     * @param \FondOfSpryker\Glue\CompanyUserAddressesRestApi\Dependency\Client\CompanyUserAddressesRestApiToCompanyUserReferenceClientInterface $companyUserReferenceClient
      */
     public function __construct(
         RestResourceBuilderInterface $restResourceBuilder,
         RestApiErrorInterface $restApiError,
         RestApiValidatorInterface $restApiValidator,
         CompanyUserAddressesMapperInterface $companyUserAddressesMapper,
-        CompanyUserAddressesRestApiToCompanyUsersRestApiClientInterface $companyUsersRestApiClient
+        CompanyUserAddressesRestApiToCompanyUserReferenceClientInterface $companyUserReferenceClient
     ) {
         $this->restResourceBuilder = $restResourceBuilder;
         $this->restApiError = $restApiError;
-        $this->companyUsersRestApiClient = $companyUsersRestApiClient;
+        $this->companyUserReferenceClient = $companyUserReferenceClient;
         $this->restApiValidator = $restApiValidator;
         $this->companyUserAddressesMapper = $companyUserAddressesMapper;
     }
@@ -82,7 +82,7 @@ class CompanyUserAddressesReader implements CompanyUserAddressesReaderInterface
         $companyUserReference = $parentResource->getId();
         $companyUserTransfer = (new CompanyUserTransfer())->setCompanyUserReference($companyUserReference);
 
-        $companyUserResponseTransfer = $this->companyUsersRestApiClient
+        $companyUserResponseTransfer = $this->companyUserReferenceClient
             ->findCompanyUserByCompanyUserReference($companyUserTransfer);
 
         $restResponse = $this->restApiValidator->validateCompanyUserResponseTransfer(

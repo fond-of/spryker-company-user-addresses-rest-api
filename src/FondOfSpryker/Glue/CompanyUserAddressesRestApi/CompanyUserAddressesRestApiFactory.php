@@ -2,7 +2,7 @@
 
 namespace FondOfSpryker\Glue\CompanyUserAddressesRestApi;
 
-use FondOfSpryker\Glue\CompanyUserAddressesRestApi\Dependency\Client\CompanyUserAddressesRestApiToCompanyUsersRestApiClientInterface;
+use FondOfSpryker\Glue\CompanyUserAddressesRestApi\Dependency\Client\CompanyUserAddressesRestApiToCompanyUserReferenceClientInterface;
 use FondOfSpryker\Glue\CompanyUserAddressesRestApi\Processor\CompanyUserAddresses\CompanyUserAddressesReader;
 use FondOfSpryker\Glue\CompanyUserAddressesRestApi\Processor\CompanyUserAddresses\CompanyUserAddressesReaderInterface;
 use FondOfSpryker\Glue\CompanyUserAddressesRestApi\Processor\Mapper\CompanyUserAddressesMapper;
@@ -25,7 +25,7 @@ class CompanyUserAddressesRestApiFactory extends AbstractFactory
             $this->createRestApiError(),
             $this->createRestApiValidator(),
             $this->createCompanyUserAddressesMapper(),
-            $this->getCompanyUsersRestApiClient()
+            $this->getCompanyUserReferenceClient()
         );
     }
 
@@ -58,10 +58,10 @@ class CompanyUserAddressesRestApiFactory extends AbstractFactory
     /**
      * @throws
      *
-     * @return \FondOfSpryker\Glue\CompanyUserAddressesRestApi\Dependency\Client\CompanyUserAddressesRestApiToCompanyUsersRestApiClientInterface
+     * @return \FondOfSpryker\Glue\CompanyUserAddressesRestApi\Dependency\Client\CompanyUserAddressesRestApiToCompanyUserReferenceClientInterface
      */
-    protected function getCompanyUsersRestApiClient(): CompanyUserAddressesRestApiToCompanyUsersRestApiClientInterface
+    protected function getCompanyUserReferenceClient(): CompanyUserAddressesRestApiToCompanyUserReferenceClientInterface
     {
-        return $this->getProvidedDependency(CompanyUserAddressesRestApiDependencyProvider::CLIENT_COMPANY_USERS_REST_API);
+        return $this->getProvidedDependency(CompanyUserAddressesRestApiDependencyProvider::CLIENT_COMPANY_USER_REFERENCE);
     }
 }
