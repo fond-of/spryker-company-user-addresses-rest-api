@@ -68,7 +68,7 @@ class CompanyUserAddressesReaderTest extends Unit
     protected $restResourceInterfaceMock;
 
     /**
-     * @var int
+     * @var string
      */
     protected $id;
 
@@ -154,7 +154,7 @@ class CompanyUserAddressesReaderTest extends Unit
             ->disableOriginalConstructor()
             ->getMock();
 
-        $this->id = 1;
+        $this->id = '2576e080-8ee2-11ea-bc55-0242ac130003';
 
         $this->companyUserResponseTransferMock = $this->getMockBuilder(CompanyUserResponseTransfer::class)
             ->disableOriginalConstructor()
