@@ -15,7 +15,7 @@
   "require": {
     "php": ">=7.1",
     "fond-of-spryker/company-users-rest-api": "dev-spryker_upgrade",
-    "fond-of-spryker/customers-rest-api": "dev-master",
+    "fond-of-spryker/customers-rest-api": "dev-spryker_upgrade",
     "spryker/glue-application": "^1.0.0"
   },
   "require-dev": {
