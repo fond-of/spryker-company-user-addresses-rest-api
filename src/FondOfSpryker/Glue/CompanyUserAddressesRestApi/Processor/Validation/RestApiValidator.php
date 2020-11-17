@@ -33,7 +33,7 @@ class RestApiValidator implements RestApiValidatorInterface
         RestRequestInterface $restRequest,
         RestResponseInterface $restResponse
     ): RestResponseInterface {
-        if (!$companyUserResponseTransfer->getCompanyUser() === null) {
+        if ($companyUserResponseTransfer->getCompanyUser() === null) {
             return $this->apiErrors->addCompanyUserNotFoundError($restResponse);
         }
 

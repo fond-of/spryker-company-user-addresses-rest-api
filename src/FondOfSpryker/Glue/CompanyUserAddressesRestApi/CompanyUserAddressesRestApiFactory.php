@@ -56,8 +56,6 @@ class CompanyUserAddressesRestApiFactory extends AbstractFactory
     }
 
     /**
-     * @throws
-     *
      * @return \FondOfSpryker\Glue\CompanyUserAddressesRestApi\Dependency\Client\CompanyUserAddressesRestApiToCompanyUserReferenceClientInterface
      */
     protected function getCompanyUserReferenceClient(): CompanyUserAddressesRestApiToCompanyUserReferenceClientInterface

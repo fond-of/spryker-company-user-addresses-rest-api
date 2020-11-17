@@ -142,7 +142,7 @@ class CompanyUserAddressesReader implements CompanyUserAddressesReaderInterface
                 $companyUnitAddressTransfer
             );
 
-        $restResource = $this->restResourceBuilder
+        return $this->restResourceBuilder
             ->createRestResource(
                 CompanyUserAddressesRestApiConfig::RESOURCE_ADDRESSES,
                 $companyUnitAddressTransfer->getUuid(),
@@ -151,15 +151,13 @@ class CompanyUserAddressesReader implements CompanyUserAddressesReaderInterface
                 RestLinkInterface::LINK_SELF,
                 $this->createSelfLink($companyUserTransfer, $companyUnitAddressTransfer)
             );
-
-        return $restResource;
     }
 
     /**
      * @param \Generated\Shared\Transfer\CompanyUserTransfer $companyUserTransfer
      * @param \Generated\Shared\Transfer\CompanyUnitAddressTransfer $companyUnitAddressTransfer
      *
-     * @return void
+     * @return string
      */
     protected function createSelfLink(
         CompanyUserTransfer $companyUserTransfer,
